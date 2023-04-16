@@ -4,8 +4,13 @@ import discord
 import asyncio
 from discord.ext import commands, tasks
 
+discord_token = os.environ.get('DISCORD_BOT_TOKEN_ETH')
+api_key = os.environ.get('BINANCE_API_KEY')
+api_secret = os.environ.get('BINANCE_API_SECRET')
+
+
 # 建立Binance API客戶端
-client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
+client = Client(api_key, api_secret)
 
 # 建立Discord客戶端
 intents = discord.Intents.default()
@@ -74,5 +79,5 @@ async def on_message(message):
 #             print('監聽休息5分鐘')
 #             await asyncio.sleep(300)
 
-bot.run(DISCORD_BOT_TOKEN_ETH)
+bot.run(discord_token)
 # client_discord.run(discord_token)
