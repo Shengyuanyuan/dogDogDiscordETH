@@ -3,16 +3,9 @@ from binance.client import Client
 import discord
 import asyncio
 from discord.ext import commands, tasks
-from dotenv import load_dotenv
 
-# 載入環境變數
-load_dotenv()
-discord_token = os.getenv('DISCORD_BOT_TOKEN_ETH')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
 # 建立Binance API客戶端
-api_key = os.getenv('BINANCE_API_KEY')
-api_secret = os.getenv('BINANCE_API_SECRET')
-client = Client(api_key, api_secret)
+client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
 
 # 建立Discord客戶端
 intents = discord.Intents.default()
@@ -81,5 +74,5 @@ async def on_message(message):
 #             print('監聽休息5分鐘')
 #             await asyncio.sleep(300)
 
-bot.run(discord_token)
+bot.run(DISCORD_BOT_TOKEN_ETH)
 # client_discord.run(discord_token)
