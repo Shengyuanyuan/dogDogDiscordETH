@@ -3,13 +3,14 @@ from binance.client import Client
 import discord
 import asyncio
 from discord.ext import commands, tasks
+from dotenv import load_dotenv
 
-discord_token = os.environ.get('DISCORD_BOT_TOKEN_ETH')
-api_key = os.environ.get('BINANCE_API_KEY')
-api_secret = os.environ.get('BINANCE_API_SECRET')
-
-
+# 載入環境變數
+load_dotenv('.env')
+discord_token = os.getenv('DISCORD_BOT_TOKEN_ETH')
 # 建立Binance API客戶端
+api_key = os.getenv('BINANCE_API_KEY')
+api_secret = os.getenv('BINANCE_API_SECRET')
 client = Client(api_key, api_secret)
 
 # 建立Discord客戶端
@@ -32,6 +33,7 @@ async def on_message(message):
     # 當收到!start指令時，開始監聽比特幣價格變化
     if message.content.startswith('!start_eth'):
         while True:
+            print('開始監聽5分鐘的價格變化')
             # 取得比特幣最新的K線資料
             klines = client.get_klines(
                 symbol='ETHUSDT', interval=Client.KLINE_INTERVAL_5MINUTE)
@@ -49,6 +51,7 @@ async def on_message(message):
                     await message.channel.send(f'📈📈 ETH現在價格為: {last_price:.2f}, 5分鐘內上漲 {price_change*100:.2f}%')
                 if price_change < 0:
                     await message.channel.send(f'🚨🚨 ETH現在價格為: {last_price:.2f}, 5分鐘內下跌 {price_change*100:.2f}%')
+            print('監聽休息5分鐘')
             await asyncio.sleep(300)
 
 
