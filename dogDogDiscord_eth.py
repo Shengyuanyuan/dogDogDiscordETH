@@ -6,8 +6,9 @@ from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
 # 載入環境變數
-load_dotenv('.env')
+load_dotenv()
 discord_token = os.getenv('DISCORD_BOT_TOKEN_ETH')
+CHANNEL_ID = os.getenv('CHANNEL_ID')
 # 建立Binance API客戶端
 api_key = os.getenv('BINANCE_API_KEY')
 api_secret = os.getenv('BINANCE_API_SECRET')
