@@ -82,6 +82,5 @@ async def on_message(message):
 #                     await message.channel.send(f'🚨 BTC現在價格為: {last_price:.2f}, 5分鐘內下跌 {price_change*100:.2f}%')
 #             print('監聽休息5分鐘')
 #             await asyncio.sleep(300)
-
 bot.run(discord_token)
 # client_discord.run(discord_token)
